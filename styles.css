@@ -1,0 +1,173 @@
+/* Symptom Buddy design system.
+   Calm, friendly, trustworthy health companion.
+   Background #F6F8F7, primary #0F766E, headings #0B2B33,
+   body #1F2937, muted #6B7280, mint #CCFBF1,
+   warning #FEF3C7 / #92400E, urgent #FEE2E2 / #991B1B.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+/* Hide Streamlit chrome: Deploy button, main menu, and footer. */
+#MainMenu { visibility: hidden; }
+footer { visibility: hidden; }
+header[data-testid="stHeader"] { visibility: hidden; }
+button[kind="header"] { visibility: hidden; }
+div[data-testid="stToolbar"] { visibility: hidden; }
+div[data-testid="stDecoration"] { visibility: hidden; }
+
+/* Page background and base type. */
+html, body, [data-testid="stAppViewContainer"] {
+  background-color: #F6F8F7;
+  color: #1F2937;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
+
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  color: #0B2B33;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; margin-top: 1.5rem; }
+h3 { font-size: 1.15rem; margin-bottom: 0.35rem; }
+
+p, li, label { color: #1F2937; }
+small, .sb-subtitle { color: #6B7280; }
+
+/* Buttons: pill-shaped, minimum 44px tall, clear hover and focus. */
+button, .stButton > button {
+  min-height: 44px;
+  border-radius: 999px !important;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+}
+
+button:hover, .stButton > button:hover {
+  filter: brightness(0.95);
+}
+
+button:focus-visible, .stButton > button:focus-visible,
+input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid #0F766E;
+  outline-offset: 2px;
+}
+
+/* Primary action buttons: Streamlit primary buttons are teal. */
+.stButton > button[kind="primary"] {
+  background-color: #0F766E;
+  color: #FFFFFF;
+  border: 1px solid #0F766E;
+}
+
+/* Text inputs: large, pill-friendly, dark text on white. */
+input[type="text"], textarea {
+  background-color: #FFFFFF;
+  color: #1F2937;
+  border: 1px solid #D1D5DB;
+  border-radius: 16px;
+  font-size: 16px;
+  padding: 0.75rem 1rem;
+}
+
+input[type="text"]::placeholder, textarea::placeholder {
+  color: #6B7280;
+}
+
+/* Sidebar: light panel, navigation cards are rendered by the app
+   as buttons; keep sidebar text dark and readable. */
+section[data-testid="stSidebar"] {
+  background-color: #EAF2F0;
+}
+
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] span {
+  color: #1F2937;
+}
+
+/* Symptom Buddy cards rendered through src/ui.py helpers. */
+.sb-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  padding: 20px 24px;
+  margin: 14px 0;
+  animation: sb-fade-in 0.35s ease-in;
+}
+
+.sb-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09);
+}
+
+.sb-card-mint { background-color: #CCFBF1; border-color: #99F6E4; }
+.sb-card-warning {
+  background-color: #FEF3C7;
+  border-left: 6px solid #F59E0B;
+  color: #92400E;
+}
+.sb-card-warning h3, .sb-card-warning p, .sb-card-warning li { color: #92400E; }
+
+.sb-card-urgent {
+  background-color: #FEE2E2;
+  border-left: 6px solid #DC2626;
+  color: #991B1B;
+}
+.sb-card-urgent h3, .sb-card-urgent p, .sb-card-urgent li { color: #991B1B; }
+
+.sb-card-icon { margin-right: 6px; }
+
+.sb-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 2px 4px 2px 0;
+  background-color: #E5E7EB;
+  color: #1F2937;
+}
+.sb-badge-mint { background-color: #CCFBF1; color: #134E4A; }
+.sb-badge-warning { background-color: #FEF3C7; color: #92400E; }
+.sb-badge-urgent { background-color: #FEE2E2; color: #991B1B; }
+
+.sb-step { display: flex; align-items: baseline; gap: 12px; margin-top: 28px; }
+.sb-step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  border-radius: 50%;
+  background-color: #0F766E;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+.sb-step h2 { margin-top: 0; }
+.sb-subtitle { color: #6B7280; margin-top: -8px; }
+
+/* Hero card, rendered by the app with the sb-hero class. */
+.sb-hero {
+  background: linear-gradient(135deg, #0B2B33 0%, #0F766E 55%, #7C6CF0 130%);
+  color: #FFFFFF;
+  border-radius: 20px;
+  padding: 28px 30px;
+  margin: 10px 0 20px 0;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+.sb-hero h1, .sb-hero p { color: #FFFFFF; }
+.sb-hero h1 { margin-bottom: 6px; }
+
+@keyframes sb-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Narrow windows: cards stack, nothing is cut off on the right. */
+@media (max-width: 640px) {
+  .sb-card { padding: 16px 18px; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+}
